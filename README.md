@@ -42,8 +42,8 @@
 
 ```
 $(document).ready(function(){
-	    NProgress.start();
-	    NProgress.done();
+    NProgress.start();
+    NProgress.done();
 }
 ```
 
@@ -72,6 +72,7 @@ $(document).ready(function(){
 		oldScrollNum = t;
 	}
 ```
+
 然后通过这个方法改变顶部导航条的margin-top的值达到展现隐藏的效果
 
 最后给滚动条加上过渡属性` transition: 0.5s ease-in-out;` ，这样就达到了想要的效果。
@@ -92,9 +93,11 @@ ps：其实用CSS动画实现更流畅一点。
 这个css3提供了原生支持：` filter: blur(3px); `
 
 原图：
+
 ![](https://images2018.cnblogs.com/blog/1138447/201807/1138447-20180723211316384-2110510536.png)
 
 duang！加了特效后：
+
 ![](https://images2018.cnblogs.com/blog/1138447/201807/1138447-20180723211254165-816091010.png)
 
 ### 5、为每篇文章单独的背景
@@ -109,6 +112,7 @@ duang！加了特效后：
     		$("#myheader_bg").css("background-image","url(https://ww1.sinaimg.cn/large/0062YmUwgy1fthnpo4n7yj31hc0hrq8e.jpg)");
 	    }
 ```
+
 这里设成没有取到值就用默认的
 
 ### 6、修改markdown样式
@@ -116,60 +120,62 @@ duang！加了特效后：
 这个就得呕心沥血的一点点调整了...
 
 ```
-	/** MarkDown样式调整 */
-	.cnblogs-markdown .hljs{
-	    font-size: 16px!important;
-	    line-height: 2!important;
-	    padding: 15px!important;
-	}
-	.cnblogs-markdown code{
-		background:rgb(238,240,244) none !important;
-		border:0px !important;
-		color: rgb(73,59,92) !important;
-		font-size: 16px!important;
-	}
-	.cnblogs-markdown h2{
-		font-weight: 500;
-		margin: 20px 0;
-	}
-	.cnblogs-markdown h2:before{
-		content: "#";
-		color: #eb5055;
-		position: relative;
-		top: 0;
-		left: -12px;
-	}
-	#cnblogs_post_body h2{
-		font-weight: 500;
-		margin: 20px 0;
-	}
-	#cnblogs_post_body h3{
-		font-size: 16px;
-	    font-weight: bold;
-	    line-height: 1.5;
-	    margin: 10px 0;
-	}
-	.cnblogs-markdown h3:before{
-		content: "##";
-		color: #2175bc;
-		position: relative;
-		top: 0;
-		left: -8px;
-	}
-	.postBody blockquote, .postCon blockquote{
-		background-image: none;
-		border-left: 5px solid #DDDFE4;
-		background-color: #EEF0F4;
-		width: 100%;
-		padding: 6px 0 6px 25px;
-	}
+/** MarkDown样式调整 */
+.cnblogs-markdown .hljs{
+    font-size: 16px!important;
+    line-height: 2!important;
+    padding: 15px!important;
+}
+.cnblogs-markdown code{
+	background:rgb(238,240,244) none !important;
+	border:0px !important;
+	color: rgb(73,59,92) !important;
+	font-size: 16px!important;
+}
+.cnblogs-markdown h2{
+	font-weight: 500;
+	margin: 20px 0;
+}
+.cnblogs-markdown h2:before{
+	content: "#";
+	color: #eb5055;
+	position: relative;
+	top: 0;
+	left: -12px;
+}
+#cnblogs_post_body h2{
+	font-weight: 500;
+	margin: 20px 0;
+}
+#cnblogs_post_body h3{
+	font-size: 16px;
+    font-weight: bold;
+    line-height: 1.5;
+    margin: 10px 0;
+}
+.cnblogs-markdown h3:before{
+	content: "##";
+	color: #2175bc;
+	position: relative;
+	top: 0;
+	left: -8px;
+}
+.postBody blockquote, .postCon blockquote{
+	background-image: none;
+	border-left: 5px solid #DDDFE4;
+	background-color: #EEF0F4;
+	width: 100%;
+	padding: 6px 0 6px 25px;
+}
 
 ```
 
 修改前：
+
 ![](https://images2018.cnblogs.com/blog/1138447/201807/1138447-20180723211706464-1907273889.jpg)
 
 修改后：
+
 ![](https://images2018.cnblogs.com/blog/1138447/201807/1138447-20180723211736497-1061673885.png)
 
 ps:感觉还是不太满意`┑(￣Д ￣)┍`
@@ -211,6 +217,7 @@ function() {
 eummm......看起来比较糟糕，但是能跑！！
 
 效果：
+
 ![](https://images2018.cnblogs.com/blog/1138447/201807/1138447-20180723212246854-1175418733.png)
 
 ### 8、底部导航条
@@ -218,6 +225,7 @@ eummm......看起来比较糟糕，但是能跑！！
 这个实现和顶部的差不多，多的就是去顶尾部和上一篇下一篇的四个按钮，去顶部和去尾部用锚点很好实现，上一篇和下一篇则需要用js从页面上取值
 
 ![](https://images2018.cnblogs.com/blog/1138447/201807/1138447-20180723213141119-1220559127.png)
+
 然后赋给自定义的按钮。
 
 ### 9、去除尾部广告
@@ -252,6 +260,8 @@ eummm......看起来比较糟糕，但是能跑！！
 不过由于我把侧边栏隐藏了，所以网页上看不到。正好我也不想让这个统计影响了整体的页面风格。
 
 当然即使隐藏了还是能够正常统计的。假如自己需要查看则需要手动在控制台改下样式，让 `#maincontent` 缩小，`#sidebar`展现。
+
+效果：
 
 ![](https://images2018.cnblogs.com/blog/1138447/201807/1138447-20180724112753203-1435351605.png)
 
