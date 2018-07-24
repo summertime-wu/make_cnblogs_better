@@ -18,13 +18,13 @@
 
 ## 博客示例
 
-[夏日浅笑、](https://www.cnblogs.com/summertime-wu/p/9356736.html)
+------------------------>>> [夏日浅笑、](https://www.cnblogs.com/summertime-wu/p/9356736.html)
 
-修改前：
+**修改前：**
 
 ![](https://images2018.cnblogs.com/blog/1138447/201807/1138447-20180723202851363-1438345274.png)
 
-修改后：
+**修改后：**
 
 ![](https://images2018.cnblogs.com/blog/1138447/201807/1138447-20180723202943226-1722300911.png)
 
@@ -47,7 +47,7 @@ $(document).ready(function(){
 }
 ```
 
-效果是：
+**效果是：**
 
 ![](https://images2018.cnblogs.com/blog/1138447/201807/1138447-20180723205232204-459128692.gif)
 
@@ -77,7 +77,9 @@ $(document).ready(function(){
 
 最后给滚动条加上过渡属性` transition: 0.5s ease-in-out;` ，这样就达到了想要的效果。
 
-![](https://images2018.cnblogs.com/blog/1138447/201807/1138447-20180723210924627-1121186504.gif)
+![](https://images2018.cnblogs.com/blog/1138447/201807/1138447-20180724185917290-778737027.gif)
+
+ps：其实用CSS动画实现更流畅一点。
 
 ### 3、导航条上的关于和友情链接
 
@@ -85,18 +87,15 @@ $(document).ready(function(){
 
 ![](https://images2018.cnblogs.com/blog/1138447/201807/1138447-20180723221624103-1277748915.png)
 
-
-ps：其实用CSS动画实现更流畅一点。
-
 ### 4、背景图片模糊
 
 这个css3提供了原生支持：` filter: blur(3px); `
 
-原图：
+**原图：**
 
 ![](https://images2018.cnblogs.com/blog/1138447/201807/1138447-20180723211316384-2110510536.png)
 
-duang！加了特效后：
+**duang！加了特效后：**
 
 ![](https://images2018.cnblogs.com/blog/1138447/201807/1138447-20180723211254165-816091010.png)
 
@@ -261,7 +260,7 @@ eummm......看起来比较糟糕，但是能跑！！
 
 当然即使隐藏了还是能够正常统计的。假如自己需要查看则需要手动在控制台改下样式，让 `#maincontent` 缩小，`#sidebar`展现。
 
-效果：
+**效果：**
 
 ![](https://images2018.cnblogs.com/blog/1138447/201807/1138447-20180724112753203-1435351605.png)
 
