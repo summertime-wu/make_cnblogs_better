@@ -59,18 +59,18 @@ $(document).ready(function(){
 百度找到监听滚动条事件的js方法
 
 ```
-	var oldScrollNum = 0;
-	window.onscroll = function(){
-		var t = document.documentElement.scrollTop || document.body.scrollTop;
-		//下滑
-		if (t>oldScrollNum) {
+var oldScrollNum = 0;
+window.onscroll = function(){
+	var t = document.documentElement.scrollTop || document.body.scrollTop;
+	//下滑
+	if (t>oldScrollNum) {
 
-		//上拉
-		}else{
+	//上拉
+	}else{
 
-		}
-		oldScrollNum = t;
 	}
+	oldScrollNum = t;
+}
 ```
 
 然后通过这个方法改变顶部导航条的margin-top的值达到展现隐藏的效果
@@ -105,11 +105,11 @@ ps：其实用CSS动画实现更流畅一点。
 
 ```
 //设置背景图片地址
-	    if ($("#head_bg_img").val()!=null && $("#head_bg_img").val()!="") {
-	    	$("#myheader_bg").css("background-image","url("+$("#head_bg_img").val()+")");
-	    }else{
-    		$("#myheader_bg").css("background-image","url(https://ww1.sinaimg.cn/large/0062YmUwgy1fthnpo4n7yj31hc0hrq8e.jpg)");
-	    }
+if ($("#head_bg_img").val()!=null && $("#head_bg_img").val()!="") {
+	$("#myheader_bg").css("background-image","url("+$("#head_bg_img").val()+")");
+}else{
+	$("#myheader_bg").css("background-image","url(https://ww1.sinaimg.cn/large/0062YmUwgy1fthnpo4n7yj31hc0hrq8e.jpg)");
+}
 ```
 
 这里设成没有取到值就用默认的
@@ -188,29 +188,29 @@ ps:感觉还是不太满意`┑(￣Д ￣)┍`
 
 ```
 function() {
-            // 根据h2、h3标签自动生成目录
-            var captions_ori = $("#cnblogs_post_body h2"),
-            	captions_ori2 = $("#cnblogs_post_body h3"),
-                captions = $("#cnblogs_post_body h2,#cnblogs_post_body h3").clone(),
-                content = $("<ul id='right_meun'></ul>");
-            $("#cnblogs_post_body").prepend(content.append(captions));
-            var index = -1,index2 = -1;
-            captions.replaceWith(function(){
-                var self = this;
-                if(self.tagName == "H2" || self.tagName == "h2"){
-                    // 设置点击目录跳转
-                    index += 1;
-                    $('<a name="' + '_caption_' + index + '"></a>').insertBefore(captions_ori[index]); 
-                    return '<li id="'+index+'li"><a href="#_caption_' + index + '">' + self.innerHTML + '</a><ul></ul></li>';
-                } else {
-                	// add by summertime-wu 增加h3链接跳转
-                	index2 += 1;
-                	$('<a name="' + '_caption' + index2 + '"></a>').insertBefore(captions_ori2[index2]); 
-                	$("#"+index+"li ul").append("<li><a href='#_caption" + index2 + "' style='color:#5f5f5f;'>" +self.innerHTML+"</a></li>");
-                    return ;
-                }
-            });
-        }
+    // 根据h2、h3标签自动生成目录
+    var captions_ori = $("#cnblogs_post_body h2"),
+	captions_ori2 = $("#cnblogs_post_body h3"),
+	captions = $("#cnblogs_post_body h2,#cnblogs_post_body h3").clone(),
+	content = $("<ul id='right_meun'></ul>");
+    $("#cnblogs_post_body").prepend(content.append(captions));
+    var index = -1,index2 = -1;
+    captions.replaceWith(function(){
+	var self = this;
+	if(self.tagName == "H2" || self.tagName == "h2"){
+	    // 设置点击目录跳转
+	    index += 1;
+	    $('<a name="' + '_caption_' + index + '"></a>').insertBefore(captions_ori[index]); 
+	    return '<li id="'+index+'li"><a href="#_caption_' + index + '">' + self.innerHTML + '</a><ul></ul></li>';
+	} else {
+		// add by summertime-wu 增加h3链接跳转
+		index2 += 1;
+		$('<a name="' + '_caption' + index2 + '"></a>').insertBefore(captions_ori2[index2]); 
+		$("#"+index+"li ul").append("<li><a href='#_caption" + index2 + "' style='color:#5f5f5f;'>" +self.innerHTML+"</a></li>");
+	    return ;
+	}
+    });
+}
 ```
 
 eummm......看起来比较糟糕，但是能跑！！
@@ -236,14 +236,14 @@ eummm......看起来比较糟糕，但是能跑！！
 这个其实没有仔细处理，只是粗略的调整了下主体的大小，当浏览器宽度小于1000px时，将#main设为100%宽。
 
 ```
-	#main{
-		width: 40%;
-		background-color: white;
-		/*max-width: 700px;*/
-	}
-	@media screen and (max-width: 1000px) {
+#main{
+	width: 40%;
+	background-color: white;
+	/*max-width: 700px;*/
+}
+@media screen and (max-width: 1000px) {
 	 #main {width: 100%;}
-	}
+}
 ```
 
 效果：
