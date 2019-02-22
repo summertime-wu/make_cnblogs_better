@@ -10,7 +10,7 @@
 
 5. 将 [页面定制.css](https://github.com/Summertime-Wu/make_cnblogs_better/blob/master/%E9%A1%B5%E9%9D%A2%E5%AE%9A%E5%88%B6.css) 复制到 `页面定制CSS代码` 代码框内
 
-6. 将 [页首.html](https://github.com/Summertime-Wu/make_cnblogs_better/blob/master/%E9%A1%B5%E5%B0%BE.html) 复制到 `页首Html代码` 代码框内
+6. 将 [页首.html](https://github.com/Summertime-Wu/make_cnblogs_better/blob/master/%E9%A1%B5%E9%A6%96.html) 复制到 `页首Html代码` 代码框内
 
 7. 将 [页尾.html](https://github.com/Summertime-Wu/make_cnblogs_better/blob/master/%E9%A1%B5%E5%B0%BE.html) 复制到 `页脚Html代码` 代码框内
 
