@@ -27,6 +27,7 @@
 
 
 <script type="text/javascript" src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+<script src="https://cdn.bootcss.com/layer/2.3/layer.js"></script>
 <script type="text/javascript">
     /**
         用来设置初始时需要执行的js
@@ -161,6 +162,11 @@
         }
     })
 
+     //点击图片放大居中显示
+    layer.photos({
+      photos: '#cnblogs_post_body'
+      ,shift: 0
+    });
  </script>
 
  <script type="text/javascript">  
