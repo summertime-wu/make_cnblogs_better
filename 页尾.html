@@ -233,7 +233,10 @@
              * setCodeRow() 代码行号显示
              */ 
             this.setAtarget(); 
-            this.setContent();
+            //假如为手机端不显示目录
+            if(document.body.clientWidth>=1000){
+                this.setContent();
+            }
             // this.setCopyright();
             this.setCodeRow();
         }
