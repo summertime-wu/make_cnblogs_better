@@ -38,7 +38,7 @@
 <script type="text/javascript">
 
     //博主名称 可不改，默认取博客园提供的
-    var nickName;
+    var nickName = null;
     //slogan
     var slogan = '立德立言，无闻西东';
     //icon
@@ -62,8 +62,10 @@
 	$(document).ready(function(){
 
         //获取博主名字
-        var footerOverTestArray = $($("#footer")[0].childNodes[2]).text().trim().split(" ");
-        nickName = footerOverTestArray[footerOverTestArray.length - 1];
+        if (nickName == null){
+            var footerOverTestArray = $($("#footer")[0].childNodes[2]).text().trim().split(" ");
+            nickName = footerOverTestArray[footerOverTestArray.length - 1];
+        }
 
 		//加载顶部进度条
 	    NProgress.start();
