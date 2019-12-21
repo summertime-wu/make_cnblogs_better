@@ -1,13 +1,13 @@
 <!-- ............自定义尾部代码开始............ -->
-<div id="post-bottom-bar" class="post-bottom-bar">
-    <div class="bottom-bar-inner">
-        <!-- 左边 -->
+<div id="post-bottom-bar" class="post-bottom-bar" style="bottom: 0px;">
+	<div class="bottom-bar-inner">
+		<!-- 左边 -->
         <div class="bottom-bar-items social-share" style="float: left;">
             <span class="bottom-bar-item bottom-bar-facebook">
                 <a id="bottom-d" href="javascript:void(0)" target="_blank">好文要赞</a>
             </span>
             <span class="bottom-bar-item bottom-bar-twitter">
-                <a id="bottom-g" href="javascript:void(0)"" target="_blank">关注我</a>
+                <a id="bottom-g" href="javascript:void(0)" target="_blank">关注我</a>
             </span>
             <span class="bottom-bar-item bottom-bar-qrcode">
                 <a id="bottom-s" href="javascript:void(0)" target="_blank">收藏该文</a>
@@ -20,153 +20,220 @@
             <span class="bottom-bar-item"><a href="#mfooter">↓</a></span>
             <span class="bottom-bar-item"><a href="#mtop">↑</a></span>
         </div>
-    </div> 
+	</div> 
 </div>
 <a name="mfooter"></a>
+
+<!-- 遮罩层（用于图片点击放大），
+    代码来自https://www.cnblogs.com/zhanxiaoyun/p/8259451.html-->
+<div id="outerdiv" style="text-align: center;position: fixed;z-index: 1000;top: 0;left: 0;
+    width: 100%;height: 100%;background-color: rgba(255,255,255,.9);display: none;">
+    <img id="bigimg" style="height: auto;width: auto;border: 0; 
+        margin: auto;position: absolute;top: 0;bottom: 0;left: 0;right: 0;">
+</div>
 <!-- ............自定义尾部代码结束............ -->
 
 
 <script type="text/javascript" src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
-<script src="https://cdn.bootcss.com/layer/2.3/layer.js"></script>
 <script type="text/javascript">
-    /**
-        用来设置初始时需要执行的js
-    */
-    $(document).ready(function(){
 
-        //加载顶部进度条
-        NProgress.start();
-        NProgress.done();
-        $("#myProgressBar").hide();
+    //博主名称 可不改，默认取博客园提供的
+    var nickName;
+    //slogan
+    var slogan = '立德立言，无闻西东';
+    //icon
+    var icon = "https://ae01.alicdn.com/kf/H445e0280b88f4f34a848238a848a687fw.png";
+    //默认博客背景图片
+    var defaultPic="https://img2018.cnblogs.com/blog/1138447/201904/1138447-20190426121949417-1115592219.jpg";
+    //icon(浏览器标题栏上的)
+    var iconB="https://img2018.cnblogs.com/blog/1138447/201909/1138447-20190911161817172-1737762696.png";
+    //友情链接地址
+    var friendLink="https://www.cnblogs.com/summertime-wu/p/9350833.html";
+    //关于地址
+    var aboutMe="https://www.cnblogs.com/summertime-wu/p/9350808.html";
+    //Github地址,假如博客username与Github username相同，不用改。
+    //如 cnblogs.com/username github.com/username 这样就不用改
+    var myGayhubUrl = null;
+</script>
+<script type="text/javascript">
+	/**
+		用来设置初始时需要执行的js
+	*/
+	$(document).ready(function(){
 
-        //设置背景图片地址
-        if ($("#head_bg_img").val()!=null && $("#head_bg_img").val()!="") {
-            $("#myheader_bg").css("background-image","url("+$("#head_bg_img").val()+")");
+        //获取博主名字
+        var footerOverTestArray = $($("#footer")[0].childNodes[2]).text().trim().split(" ");
+        nickName = footerOverTestArray[footerOverTestArray.length - 1];
+
+		//加载顶部进度条
+	    NProgress.start();
+	    NProgress.done();
+	    $("#myProgressBar").hide();
+
+	    //设置背景图片地址
+	    if ($("#head_bg_img").val()!=null && $("#head_bg_img").val()!="") {
+	    	$("#myheader_bg").css("background-image","url("+$("#head_bg_img").val()+")");
+	    }else{
+    		$("#myheader_bg").css("background-image","url("+defaultPic+")");
+	    }
+
+	    //标题
+        if($("#cb_post_title_url").html()){
+            $("#mypost_title_h").html($("#cb_post_title_url").html());
         }else{
-            $("#myheader_bg").css("background-image","url(https://ww1.sinaimg.cn/large/0062YmUwgy1fthnpo4n7yj31hc0hrq8e.jpg)");
+            $("#mypost_title_h").html(nickName);
         }
 
-        //标题
-        $("#mypost_title_h").html($("#cb_post_title_url").html());
+	    //正文和标题淡入
+	    $("#mainContent").css("opacity","1");
+	    $("#mainContent").css("margin-top","0");
+	    $("#mypost_title").css("opacity","1");
+	    $("#mypost_title").css("top","75pt");
 
-        //正文和标题淡入
-        $("#mainContent").css("opacity","1");
-        $("#mainContent").css("margin-top","0");
-        $("#mypost_title").css("opacity","1");
-        $("#mypost_title").css("top","75pt");
-
-        //更改iocn图标
+        /* --根据个人配置修改页面 start-- */
+        //修改a链接
+        var ccList = $(".c-c");
+        for(var cc of ccList){
+            $(cc).attr("href", $(cc).attr("href").replace("summertime-wu",currentBlogApp));
+        }
+        //设置博客名称
+        $("#mypost_title_h").html(nickName);
+        //设置Github链接
+        if (myGayhubUrl != null ){$("#myGayhubUrl").attr("href",myGayhubUrl)}
+        //设置友链的链接
+        $("#friendLink").attr("href",friendLink);
+        //设置关于的链接
+        $("#aboutMe").attr("href",aboutMe);
+        //设置两个iocn图标
+        $("#nv-icon").attr("src",icon);
         var linkObject = document.createElement("link");
         linkObject.rel = "shortcut icon";
-        linkObject.href = "https://ww1.sinaimg.cn/large/0062YmUwgy1fthbsa7nmoj302g02ggle.jpg";
+        linkObject.href = iconB;
         document.getElementsByTagName("head")[0].appendChild(linkObject);
-    })
-
-    /**
-        设置ajax请求加载完所有数据时执行的js
-    */
-    setTimeout(afterAjax,1000);
-    function afterAjax(){
-        //假如是首页
-        if (window.location.href == "https://www.cnblogs.com/summertime-wu"|| 
-            window.location.href == "https://www.cnblogs.com/summertime-wu/"||
-            window.location.href == "http://www.cnblogs.com/summertime-wu"|| 
-            window.location.href == "http://www.cnblogs.com/summertime-wu/") {
-            $("#mypost_title_f").html("");
-            $("#mypost_title_e").html("<a href='https://cnblogs.com/summertime-wu'>立德立言，无闻西东</a>");
+        //设置底部栏按钮
+        if (window.location.href == "https://www.cnblogs.com/"+currentBlogApp|| 
+                window.location.href == "https://www.cnblogs.com/"+currentBlogApp+"/"||
+                window.location.href == "http://www.cnblogs.com/"+currentBlogApp|| 
+                window.location.href == "http://www.cnblogs.com/"+currentBlogApp+"/") {
+            $("#bottom-d").html("友情链接");
+            $("#bottom-d").attr("href",friendLink);
         }else{
-            var classification = null;
-            if ($("#BlogPostCategory").html()!=null && $("#BlogPostCategory").html()!= "") {
-                classification = $("#BlogPostCategory").html();
-                classification = classification.substring(3,classification.length);
-            }else{
-                classification = "<a href='https://cnblogs.com/summertime-wu'>暂未分类</a>";
-            }
-            var ftitle = "Published on "+ $("#post-date").html() + " in " +  classification
-            + " with <a href='https://cnblogs.com/summertime-wu'>夏日浅笑、</a>";
-            //设置副标题标题
-            $("#mypost_title_f").html(ftitle);
-            //设置标题分类按钮
-            $("#mypost_title_e").html(classification);
-            //设置底部导航条上一篇下一篇文章
-            var pnp = $("#post_next_prev a");
-            $("#mbottom-left").attr("href",pnp[1].href);
-            if (pnp.length>2) {
-                $("#mbottom-right").attr("href",pnp[3].href);
-            }
+            var url = window.location.href;
+            var lastUrl = url.substring(url.lastIndexOf("/")+1);
+            var mpageId = lastUrl.substring(0,lastUrl.indexOf("."));
+            $("#bottom-d").click(function(){
+                DiggIt(mpageId,cb_blogId,1);
+                green_channel_success(this,'谢谢推荐！');
+            })
         }
-        $("#myheader_bg").css("filter","blur(0px)");
-    }
+        /* --根据个人配置修改页面 end-- */
+	})
+
+	/**
+		设置ajax请求加载完所有数据时执行的js
+	*/
+	setTimeout(afterAjax,1000);
+	function afterAjax(){
+		//假如是首页
+		if (window.location.href == "https://www.cnblogs.com/"+currentBlogApp|| 
+			window.location.href == "https://www.cnblogs.com/"+currentBlogApp+"/"||
+			window.location.href == "http://www.cnblogs.com/"+currentBlogApp|| 
+			window.location.href == "http://www.cnblogs.com/"+currentBlogApp+"/") {
+			$("#mypost_title_e").html("<a href='https://cnblogs.com/"+currentBlogApp+"'>"+slogan+"</a>");
+		}else{
+		    var classification = null;
+		    if ($("#BlogPostCategory").html()!=null && $("#BlogPostCategory").html()!= "") {
+		    	classification = $("#BlogPostCategory").html();
+		    	classification = classification.substring(3,classification.length);
+		    }else{
+		    	classification = "<a href='https://cnblogs.com/"+currentBlogApp+"'>暂未分类</a>";
+		    }
+		    var ftitle = "Published on "+ $("#post-date").html() + " in " +  classification
+		    + " with <a href='https://cnblogs.com/"+currentBlogApp+"'>"+nickName+"</a>";
+		    //设置副标题标题
+		    $("#mypost_title_f").html(ftitle);
+		    //设置标题分类按钮
+		    $("#mypost_title_e").html(classification);
+		    //设置底部导航条上一篇下一篇文章
+		    var pnp = $("#post_next_prev a");
+		    $("#mbottom-left").attr("href",pnp[1].href);
+		    if (pnp.length>2) {
+		    	$("#mbottom-right").attr("href",pnp[3].href);
+		    }
+		}
+		$("#myheader_bg").css("filter","blur(0px)");
+
+        //优化评论区样式
+        $("#comment_form_container p:first").hide();
+        $("#comment_form_container p:last").hide();
+        $("#commentbox_opt a:last").hide();
+        $("#tbCommentBody").attr('placeholder','Your comment here. Be cool. ');
+	}
 
 
-    /** 
-        自定义的js方法
-    */
-    //设置底部导航条点击事件
-    $("#bottom-g").click(function(){
-        follow('5dfde587-1816-e711-845c-ac853d9f53ac');
-    })
-    $("#bottom-s").click(function(){
-        AddToWz(cb_entryId);return false;
-    })
-    if (window.location.href == "https://www.cnblogs.com/summertime-wu"|| 
-            window.location.href == "https://www.cnblogs.com/summertime-wu/"||
-            window.location.href == "http://www.cnblogs.com/summertime-wu"|| 
-            window.location.href == "http://www.cnblogs.com/summertime-wu/") {
-        $("#bottom-d").html("友情链接");
-        $("#bottom-d").attr("href","https://www.cnblogs.com/summertime-wu/p/9350833.html");
-    }else{
-        var url = window.location.href;
-        var lastUrl = url.substring(url.lastIndexOf("/")+1);
-        var mpageId = lastUrl.substring(0,lastUrl.indexOf("."));
-        $("#bottom-d").click(function(){
-            DiggIt(mpageId,cb_blogId,1);
-            green_channel_success(this,'谢谢推荐！');
-        })
-    }
+	/** 
+		自定义的js方法
+	*/
+	//设置底部导航条点击事件
+	$("#bottom-g").click(function(){
+		follow('5dfde587-1816-e711-845c-ac853d9f53ac');
+	})
+	$("#bottom-s").click(function(){
+		AddToWz(cb_entryId);return false;
+	})
 
 
-    //通过滚动条控制导航条的展现隐藏
-    var oldScrollNum = 0;
-    window.onscroll = function(){
-        var t = document.documentElement.scrollTop || document.body.scrollTop;
-        //下滑
-        if (t>oldScrollNum) {
-            if (t>120) {
-                $("#mynavbar").css("margin-top","-70px");//顶部导航
-                $("#post-bottom-bar").css("bottom","-3pc");//底部导航
-            }
-            if (t>300) {
-                $("#right_meun").css("display","inline-block");//右侧导航
-            }
-        //上拉
-        }else{
-            //防止用a链接跳转也触发效果
-            if (oldScrollNum-t<20) {
-                $("#mynavbar").css("margin-top","0px");//顶部导航
-                $("#post-bottom-bar").css("bottom","0");//底部导航
-            }
-            if (t<=300) {
-                $("#right_meun").css("display","none");//右侧导航
-            }
-        }
-        oldScrollNum = t;
-    }
+	//通过滚动条控制导航条的展现隐藏
+	var oldScrollNum = 0;
+	window.onscroll = function(){
+		var t = document.documentElement.scrollTop || document.body.scrollTop;
+		//下滑
+		if (t>oldScrollNum) {
+			if (t>120) {
+				$("#mynavbar").css("margin-top","-70px");//顶部导航
+				$("#post-bottom-bar").css("bottom","-3pc");//底部导航
+			}
+			if (t>300) {
+				$("#right_meun").css("display","inline-block");//右侧导航
+			}
+		//上拉
+		}else{
+			//防止用a链接跳转也触发效果
+			if (oldScrollNum-t<20) {
+				$("#mynavbar").css("margin-top","0px");//顶部导航
+				$("#post-bottom-bar").css("bottom","0");//底部导航
+			}
+			if (t<=300) {
+				$("#right_meun").css("display","none");//右侧导航
+			}
+		}
+		oldScrollNum = t;
+	}
 
-    //背景大图点击模糊||清晰
-    $("#myheader_cover").click(function(){
-        if ($("#myheader_bg").css("filter") == "blur(3px)") {
-            $("#myheader_bg").css("filter","blur(0px)");
-        }else{
-            $("#myheader_bg").css("filter","blur(3px)");
-        }
-    })
+	//背景大图点击模糊||清晰
+	$("#myheader_cover").click(function(){
+		if ($("#myheader_bg").css("filter") == "blur(3px)") {
+			$("#myheader_bg").css("filter","blur(0px)");
+		}else{
+			$("#myheader_bg").css("filter","blur(3px)");
+		}
+	})
 
-     //点击图片放大居中显示
-    layer.photos({
-      photos: '#cnblogs_post_body'
-      ,shift: 0
+    //图片点击放大
+    $("img").mouseover(function(){
+        $(this).css("cursor","pointer");
     });
+    $("img").click(function(){  
+        var _this = $(this);//将当前的pimg元素作为_this传入函数    
+        var src = _this.attr("src");//获取当前点击的pimg元素中的src属性    
+        $('#outerdiv').attr('display','block');  
+        $("#bigimg").attr("src", src);//设置#bigimg元素的src属性    
+        $("#outerdiv").fadeIn("fast");     
+    });
+    $("#outerdiv").click(function(){//再次点击淡出消失弹出层    
+        $(this).fadeOut("fast");    
+    }); 
+
  </script>
 
  <script type="text/javascript">  
@@ -204,7 +271,7 @@
         setContent: function() {
             // 根据h2、h3标签自动生成目录
             var captions_ori = $("#cnblogs_post_body h2"),
-                captions_ori2 = $("#cnblogs_post_body h3"),
+            	captions_ori2 = $("#cnblogs_post_body h3"),
                 captions = $("#cnblogs_post_body h2,#cnblogs_post_body h3").clone(),
                 content = $("<ul id='right_meun'></ul>");
             $("#cnblogs_post_body").prepend(content.append(captions));
@@ -217,10 +284,10 @@
                     $('<a name="' + '_caption_' + index + '"></a>').insertBefore(captions_ori[index]); 
                     return '<li id="'+index+'li"><a href="#_caption_' + index + '">' + self.innerHTML + '</a><ul></ul></li>';
                 } else {
-                    // add by summertime-wu 增加h3链接跳转
-                    index2 += 1;
-                    $('<a name="' + '_caption' + index2 + '"></a>').insertBefore(captions_ori2[index2]); 
-                    $("#"+index+"li ul").append("<li><a href='#_caption" + index2 + "' style='color:#5f5f5f;'>" +self.innerHTML+"</a></li>");
+                	// add by summertime-wu 增加h3链接跳转
+                	index2 += 1;
+                	$('<a name="' + '_caption' + index2 + '"></a>').insertBefore(captions_ori2[index2]); 
+                	$("#"+index+"li ul").append("<li><a href='#_caption" + index2 + "' style='color:#5f5f5f;'>" +self.innerHTML+"</a></li>");
                     return ;
                 }
             });
