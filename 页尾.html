@@ -79,7 +79,7 @@
     		$("#myheader_bg").css("background-image","url("+defaultPic+")");
 	    }
 
-	    //标题
+	    //设置标题
         if($("#cb_post_title_url").html()){
             $("#mypost_title_h").html($("#cb_post_title_url").html());
         }else{
@@ -98,8 +98,6 @@
         for(var cc of ccList){
             $(cc).attr("href", $(cc).attr("href").replace("summertime-wu",currentBlogApp));
         }
-        //设置博客名称
-        $("#mypost_title_h").html(nickName);
         //设置Github链接
         if (myGayhubUrl != null ){$("#myGayhubUrl").attr("href",myGayhubUrl)}
         //设置友链的链接
