@@ -478,8 +478,6 @@
 	    outline: 0;
 	    resize: none;
 	    overflow: hidden;
-	}
-	div .commentform textarea{
 		width: 100%;
 	}
 	.comment_btn {
@@ -491,8 +489,8 @@
 	    height: 32px;
 	    padding: 0 20px;
 	    position: absolute;
-	    right:7%;
-	    bottom: 55px;
+	    right:6%;
+	    bottom: 38px;
 	    width: auto;
 	}
 	.comment_btn:hover {
@@ -502,12 +500,6 @@
 	    transition-duration: .4s;
 	}
 	.feedback_area_title{
-		display: none;
-	}
-	#commentform_title {
-		display: none;
-	}
-	.commentbox_title{
 		display: none;
 	}
 	.commentbox_main{
