@@ -176,9 +176,11 @@
 	//设置底部导航条点击关注按钮事件
 	$("#bottom-g").click(function(){
 		$('#green_channel_follow').click()
+		return false
 	})
 	$("#bottom-s").click(function(){
-		AddToWz(cb_entryId);return false;
+		AddToWz(cb_entryId);
+		return false;
 	})
 
 
