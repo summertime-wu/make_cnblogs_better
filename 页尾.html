@@ -23,14 +23,6 @@
 	</div> 
 </div>
 <a name="mfooter"></a>
-
-<!-- 遮罩层（用于图片点击放大），
-    代码来自https://www.cnblogs.com/zhanxiaoyun/p/8259451.html-->
-<div id="outerdiv" style="text-align: center;position: fixed;z-index: 1000;top: 0;left: 0;
-    width: 100%;height: 100%;background-color: rgba(255,255,255,.9);display: none;">
-    <img id="bigimg" style="height: auto;width: auto;border: 0; 
-        margin: auto;position: absolute;top: 0;bottom: 0;left: 0;right: 0;">
-</div>
 <!-- ............自定义尾部代码结束............ -->
 
 
@@ -219,22 +211,6 @@
 			$("#myheader_bg").css("filter","blur(3px)");
 		}
 	})
-
-    //图片点击放大
-    $("img").mouseover(function(){
-        $(this).css("cursor","pointer");
-    });
-    $("img").click(function(){  
-        var _this = $(this);//将当前的pimg元素作为_this传入函数    
-        var src = _this.attr("src");//获取当前点击的pimg元素中的src属性    
-        $('#outerdiv').attr('display','block');  
-        $("#bigimg").attr("src", src);//设置#bigimg元素的src属性    
-        $("#outerdiv").fadeIn("fast");     
-    });
-    $("#outerdiv").click(function(){//再次点击淡出消失弹出层    
-        $(this).fadeOut("fast");    
-    }); 
-
  </script>
 
  <script type="text/javascript">  
