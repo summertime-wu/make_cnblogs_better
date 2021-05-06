@@ -255,7 +255,6 @@
 	/** 右侧导航 */
 	#right_meun{
 	    position: fixed;
-	    z-index: 999;
 	    top: 100px;
 	    left: 74%;
 	    display: none;
