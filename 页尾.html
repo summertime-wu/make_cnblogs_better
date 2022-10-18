@@ -242,7 +242,12 @@
         setAtarget: function() {
             // 博客内的链接在新窗口打开
             $("#cnblogs_post_body a").each(function(){
-                this.target = "_blank";
+                if (this.href.indexOf(window.location.href === 0)) {
+                    // 如果 url 指向当前博客
+                    // 不要在新窗口打开
+                } else {
+                    this.target = "_blank";
+                }
             }) 
         },
         setContent: function() {
